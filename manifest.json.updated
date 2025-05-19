@@ -6,7 +6,7 @@
   "permissions": ["activeTab", "scripting", "storage"],
   "host_permissions": [
     "https://generativelanguage.googleapis.com/*",
-    "https://article-summarizer-api.onrender.com/*"
+    "https://ai-article-summarizer-extension.onrender.com/*"
   ],
   "icons": {
     "16": "icons/icon48.png",

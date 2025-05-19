@@ -11,10 +11,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         }
 
         // Call our secure proxy server on Render instead of Gemini API directly
-        const proxyServerUrl = "https://article-summarizer-api.onrender.com/api/summarize";
-        
+        const proxyServerUrl = "https://ai-article-summarizer-extension.onrender.com/api/summarize";
+
         console.log("Background: Calling proxy server for summarization...");
-        
+
         fetch(proxyServerUrl, {
             method: "POST",
             headers: {
@@ -37,7 +37,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         })
         .then(data => {
             console.log("Background: Received data from proxy server");
-            
+
             // The proxy server already does the parsing, so we can directly use the response
             sendResponse({
                 summary: data.summary,
