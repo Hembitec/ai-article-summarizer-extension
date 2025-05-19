@@ -1,0 +1,181 @@
+/* css/style.css */
+
+#ai-summarizer-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50; /* Match panel theme */
+    color: white;
+    border-radius: 50%;
+    /* Remove text alignment/line height */
+    /* text-align: center; */
+    /* line-height: 50px; */
+    display: flex; /* Use flexbox to center icon */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    /* Remove font size */
+    /* font-size: 24px; */
+    user-select: none;
+    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.35), 0 1.5px 6px rgba(0,0,0,0.25); /* Stronger, more visible shadow */
+    transition: background-color 0.2s ease;
+}
+
+#ai-summarizer-fab:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+#ai-summarizer-fab-icon {
+    width: 100%; /* Make icon fill the FAB width */
+    height: 100%; /* Make icon fill the FAB height */
+    border-radius: 50%; /* Make the image itself circular */
+    object-fit: cover; /* Ensures the image covers the area, might crop if not square */
+    display: block;
+}
+
+/* Sleek, Minimal, Green Themed Panel */
+#ai-summarizer-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 380px;
+    height: calc(100vh - 40px);
+    max-height: 85vh;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden !important; /* FIXED: force hidden overflow */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#ai-summarizer-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #4CAF50; /* Green accent for header */
+    color: #ffffff; /* White text on green */
+    border-bottom: none; /* Remove border, shadow gives separation */
+}
+
+#ai-summarizer-panel-header h2 {
+    margin: 0;
+    font-size: 1.1em; /* Slightly reduced for a sleeker look */
+    font-weight: 500; /* Lighter font weight */
+}
+
+#ai-summarizer-close-btn {
+    background: none;
+    border: none;
+    font-size: 22px; /* Adjusted size */
+    cursor: pointer;
+    color: #e8f5e9; /* Light green, less prominent */
+    padding: 5px;
+    line-height: 1;
+}
+
+#ai-summarizer-close-btn:hover {
+    color: #ffffff; /* White on hover */
+}
+
+/* Complete reset for content area scrolling */
+#ai-summary-content-area {
+    display: block !important;
+    position: relative !important;
+    padding: 20px !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    height: calc(85vh - 70px) !important; /* Fixed height calculation */
+    max-height: calc(85vh - 70px) !important;
+    color: #333333 !important;
+    line-height: 1.6 !important;
+    background-color: #ffffff !important;
+    box-sizing: border-box !important;
+}
+
+#ai-summary-content-area::-webkit-scrollbar {
+    width: 8px;
+}
+
+#ai-summary-content-area::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 4px;
+}
+
+#ai-summary-content-area::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8;
+}
+
+
+#ai-summary-content p,
+#ai-summary-conclusion p {
+    margin-bottom: 1em;
+    font-size: 0.95em;
+}
+
+#ai-summary-content h4,
+#ai-summary-keypoints h4,
+#ai-summary-conclusion h4 {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    color: #4CAF50; /* Green for subheadings */
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#ai-summary-keypoints ul {
+    list-style-type: none; /* Remove default bullets */
+    padding-left: 5px;
+}
+
+#ai-summary-keypoints li {
+    margin-bottom: 0.6em;
+    position: relative;
+    padding-left: 20px; /* Space for custom bullet */
+    font-size: 0.9em;
+}
+
+#ai-summary-keypoints li::before {
+    content: "\2713"; /* Checkmark icon */
+    position: absolute;
+    left: 0;
+    color: #4CAF50; /* Green checkmark */
+    font-size: 1em;
+}
+
+/* Simulated Progress Bar Styles */
+.ai-summarizer-progress-container {
+    width: 90%;
+    height: 12px; /* Make the bar slim */
+    background-color: #e0e0e0; /* Background of the container */
+    border-radius: 6px;
+    margin: 40px auto 10px auto; /* Center and provide spacing */
+    overflow: hidden;
+}
+
+.ai-summarizer-progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #4CAF50; /* Green color for the bar */
+    border-radius: 6px;
+    animation: ai-summarizer-fill-progress 1.8s ease-out forwards; /* Animation */
+    /* 'forwards' keeps the state at 100% after animation */
+}
+
+@keyframes ai-summarizer-fill-progress {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* Styles for #ai-summarizer-panel-footer and #ai-summarizer-copy are removed as the elements are no longer present. */

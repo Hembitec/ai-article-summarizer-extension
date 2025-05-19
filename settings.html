@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Article Summarizer Settings</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .settings-section {
+            margin-bottom: 30px;
+        }
+        .site-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .site-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .add-site-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        #new-site {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .add-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+        .note {
+            background-color: #fff9c4;
+            padding: 10px;
+            border-left: 4px solid #ffeb3b;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Article Summarizer Settings</h1>
+    
+    <div class="settings-section">
+        <h2>Blocked Sites</h2>
+        <p>The extension won't appear on these sites:</p>
+        
+        <ul id="blocked-sites-list" class="site-list">
+            <!-- List items will be added by JavaScript -->
+            <li class="site-item">Loading sites...</li>
+        </ul>
+        
+        <div class="add-site-form">
+            <input type="text" id="new-site" placeholder="Enter domain (e.g., example.com, subdomain.example.com)">
+            <button id="add-site-btn" class="add-btn">Add Site</button>
+        </div>
+        
+        <div class="note">
+            <p><strong>Note:</strong> Enter domains without "http://" or "https://". 
+            For example, use "example.com" or "subdomain.example.com".</p>
+            <p><strong>Tip:</strong> All localhost URLs are automatically blocked regardless of this list.</p>
+        </div>
+    </div>
+    
+    <script src="js/settings.js"></script>
+</body>
+</html> 

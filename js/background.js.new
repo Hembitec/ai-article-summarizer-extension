@@ -1,0 +1,57 @@
+// js/background.js
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.type === "summarizeArticle") {
+        console.log("Background: Received article text:", request.articleText ? request.articleText.substring(0, 200) + "..." : "[No article text received]");
+
+        if (!request.articleText) {
+            console.error("Background: No article text received from content script.");
+            sendResponse({ error: "No article text provided for summarization." });
+            return true; // Keep the message channel open for asynchronous response
+        }
+
+        // Call our secure proxy server instead of Gemini API directly
+        const proxyServerUrl = "https://your-project-name.vercel.app/api/summarize";
+        
+        console.log("Background: Calling proxy server for summarization...");
+        
+        fetch(proxyServerUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ articleText: request.articleText }),
+        })
+        .then(response => {
+            if (!response.ok) {
+                // Try to get error message from API response body
+                return response.json().then(errorBody => {
+                    console.error("Proxy Server Error Response:", errorBody);
+                    throw new Error(`Server Error: ${response.status} ${response.statusText}. Details: ${JSON.stringify(errorBody.error || errorBody)}`);
+                }).catch(parseError => {
+                    // If parsing error body fails, throw generic error
+                    throw new Error(`Server Error: ${response.status} ${response.statusText}. Could not parse error response.`);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Background: Received data from proxy server");
+            
+            // The proxy server already does the parsing, so we can directly use the response
+            sendResponse({
+                summary: data.summary,
+                keypoints: data.keypoints,
+                conclusion: data.conclusion
+            });
+        })
+        .catch(error => {
+            console.error("Background: Error calling proxy server:", error);
+            sendResponse({ error: "Failed to get summary: " + error.message });
+        });
+
+        return true; // Crucial: Indicates that sendResponse will be called asynchronously.
+    }
+});
+
+console.log("Background script loaded and listener attached for proxy server calls.");
